@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Table des PNJ - La Taverne du D20{% endblock %}
+
+{% block content %}
+<!-- Conteneur principal avec marges -->
+<div class="container my-5">
+    <!-- Filtres et barre de recherche -->
+    <form id="search-form" method="post" class="mb-4">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label for="category">Sélectionner une Localisation :</label>
+                <select id="category" name="category" class="form-control">
+                    <option value="">Toutes Localisations</option>
+                    <option value="Taverne">Taverne</option>
+                    <option value="Lieu Malfamé">Lieu Malfamé</option>
+                    <option value="Forêt/Nature">Forêt/Nature</option>
+                    <option value="Marché">Marché</option>
+                    <option value="Bibliothèque Ancienne">Bibliothèque Ancienne</option>
+                    <option value="Château/Palais">Château/Palais</option>
+                    <option value="Guilde/Atelier">Guilde/Atelier</option>
+                    <option value="Militaire">Militaire</option>
+                    <option value="Port/Quai">Port/Quai</option>
+                    <option value="Temple/Église">Temple/Église</option>
+                    <option value="Rue/Place Publique">Rue/Place Publique</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sexe">Sélectionner le Sexe :</label>
+                <select id="sexe" name="sexe" class="form-control">
+                    <option value="">Tous</option>
+                    <option value="Homme">Homme</option>
+                    <option value="Femme">Femme</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="race">Sélectionner la Race :</label>
+                <select id="race" name="race" class="form-control">
+                    <option value="">Toutes Races</option>
+                    <!-- Les options de race seront générées dynamiquement -->
+                </select>
+            </div>
+            <div class="filter-group search-container">
+                <label for="keyword">Mot-clé :</label>
+                <div class="search-wrapper">
+                    <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Rechercher...">
+                    <button class="btn search-button" type="button" id="search-icon">
+                        <img src="/static/images/search-icon.png" alt="Rechercher">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <div class="d-flex justify-content-center flex-wrap">
+                <button type="button" id="random-btn" class="btn btn-custom mx-2" data-action="random">PNJ Aléatoire</button>
+                <button type="button" id="reset-btn" class="btn btn-custom mx-2" data-action="reset">Réinitialiser les Filtres</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Section pour afficher les filtres actifs -->
+    <div class="active-filters" id="active-filters">
+        <!-- Les filtres actifs seront affichés ici -->
+    </div>
+
+    <p id="category-description" class="category-description"></p>
+
+    <div class="row" id="results">
+        <!-- Les résultats seront affichés ici -->
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+            <!-- Les contrôles de pagination seront ajoutés ici -->
+        </ul>
+    </nav>
+
+    <div class="loading-spinner" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div> <!-- Fin du conteneur principal -->
+
+<!-- Modal pour l'image -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <!-- On a retiré modal-lg pour une taille plus compacte -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><span id="pnjName"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Indicateur de chargement -->
+        <div id="imageLoadingSpinner" class="image-loading-spinner" style="display: none;">
+          <div class="spinner-border text-warning" role="status">
+            <span class="sr-only">Chargement...</span>
+          </div>
+          <p>Chargement de l'image...</p>
+        </div>
+        <div class="text-center">
+          <img id="modalImage" src="" alt="Image PNJ" style="display: none;">
+        </div>
+        <!-- Section d'upload -->
+        <div id="uploadSection">
+          <!-- Message affiché seulement si le PNJ n'a pas d'image -->
+          <div id="messageNoImage">
+            <p class="text-center">Aucune image personnalisée n'est disponible pour ce PNJ.</p>
+            <p class="text-center">Vous pouvez en ajouter une en utilisant le formulaire ci-dessous :</p>
+          </div>
+          <form id="image-upload-form" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" name="image" id="imageInput" accept="image/*">
+              <label class="custom-file-label" for="imageInput">Choisir une image...</label>
+            </div>
+            <!-- Ajout d'un texte informatif sur les formats pris en charge -->
+            <small class="form-text text-muted">Formats pris en charge : png, jpg, jpeg, gif</small>
+            <!-- Barre de progression -->
+            <div class="progress mb-3" id="uploadProgress" style="display: none;">
+              <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="button" class="btn btn-custom mr-2" onclick="uploadImage()">Télécharger</button>
+              <button type="button" class="btn btn-custom-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}

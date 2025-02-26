@@ -1,0 +1,560 @@
+/* Styles généraux */
+body {
+    position: relative;
+    background-image: url('/static/images/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #d2b48c;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Opacité de l'arrière-plan */
+    z-index: -1;
+}
+
+h1.main-title {
+    color: #ffcc66;
+    text-shadow: 2px 2px #4a4a4a;
+    font-size: 3rem;
+    padding: 20px 0;
+    border-bottom: 2px solid #ffcc66;
+}
+
+/* Styles pour les cartes */
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #2a2a2a;
+    color: #d2b48c;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc66;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    font-style: italic;
+    color: #c0c0c0;
+}
+
+/* Styles pour les boutons */
+.btn-custom,
+.btn-custom-image,
+.btn-custom-secondary {
+    position: relative;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #ffcc66;
+    border: 2px solid #ffcc66;
+    background-color: #3a3a3a;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    height: 35px;
+    box-sizing: border-box;
+    text-shadow: 1px 1px 2px #000;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn-custom:hover,
+.btn-custom-image:hover,
+.btn-custom-secondary:hover {
+    background-color: #ffcc66;
+    color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+.btn-custom:focus,
+.btn-custom-image:focus,
+.btn-custom-secondary:focus {
+    outline: none;
+}
+
+.btn-custom-image span {
+    position: relative;
+    z-index: 1;
+    color: #ffcc66;
+}
+
+/* Spécificités du bouton "Ajouter/Voir l'image" */
+.btn-custom-image {
+    background-image: url('/static/images/banner.png');
+    height: 35px; /* Ajuster si nécessaire */
+}
+
+/* Styles pour les contrôles de formulaire */
+.form-control {
+    background-color: #2a2a2a;
+    border: 2px solid #ffcc66;
+    color: #d2b48c;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: #ffcc66;
+    box-shadow: 0 0 5px rgba(255, 204, 102, 0.5);
+    outline: none;
+}
+
+/* Styles pour les filtres */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Styles pour les filtres actifs */
+.active-filters {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.active-filter {
+    background-color: #3a3a3a;
+    color: #ffcc66;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.active-filter:hover {
+    background-color: #ffcc66;
+    color: #3a3a3a;
+}
+
+/* Styles pour la barre de recherche */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-wrapper .form-control {
+    width: 100%;
+    padding-right: 50px; /* Espace pour la loupe */
+}
+
+.search-wrapper .search-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.search-wrapper .search-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-wrapper .form-control::placeholder {
+    color: #d2b48c;
+    opacity: 1;
+}
+
+/* Styles pour le bouton "+" du prompt */
+.btn-toggle {
+    background-color: transparent;
+    border: none;
+    color: #ffcc66;
+    font-size: 1.25rem;
+    transition: color 0.3s;
+}
+
+.btn-toggle:hover {
+    color: #d2b48c;
+}
+
+.btn-toggle:focus {
+    outline: none;
+}
+
+/* Styles pour la pagination */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.pagination .page-item .page-link {
+    background-color: #2a2a2a;
+    border: 1px solid #ffcc66;
+    color: #ffcc66;
+    margin: 0 2px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ffcc66;
+    color: #3a3a3a;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #ffcc66;
+    color: #3a3a3a;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #444;
+    cursor: not-allowed;
+}
+
+/* Styles pour la catégorie de description */
+.category-description {
+    position: relative;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #000000;
+    font-weight: bold;
+    border-left: 4px solid #ffcc66;
+    padding-left: 10px;
+    background-image: url('/static/images/category-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.category-description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1); /* Laisser transparaître le fond */
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.category-description * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Styles pour la modale */
+.modal-content {
+    border-radius: 15px;
+    background-color: #2a2a2a;
+    color: #d2b48c;
+}
+
+.modal-header {
+    background-color: #ffcc66;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+
+.modal-title {
+    color: #333;
+    font-size: 1.75rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-body .text-center {
+    margin-bottom: 1.5rem;
+}
+
+#modalImage {
+    width: 100%;
+    max-width: 400px; /* Ajuste cette valeur selon tes préférences */
+    height: auto;
+    margin: 0 auto; /* Centre l'image horizontalement */
+    border: 5px solid #ffcc66;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-height: 80vh; 
+}
+
+#uploadSection {
+    background-color: #3a3a3a;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+#uploadSection p {
+    margin-bottom: 1rem;
+}
+
+/* Styles pour les fichiers custom */
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 45px; /* Augmenté de 35px à 45px pour plus d'espace vertical */
+    margin-bottom: 0;
+}
+
+.custom-file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px; /* Doit correspondre à .custom-file */
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    background-color: #2a2a2a;
+    border: 2px solid #ffcc66;
+    color: #ffcc66;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center; /* Centre verticalement le contenu */
+    justify-content: space-between; /* Espace entre le texte et le bouton "Parcourir" */
+}
+
+.custom-file-label::after {
+    content: 'Parcourir';
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background-color: #ffcc66;
+    color: #3a3a3a;
+    border-left: 2px solid #ffcc66;
+    border-radius: 0 5px 5px 0;
+    pointer-events: none;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Centre verticalement le bouton "Parcourir" */
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+    border-color: #ffcc66;
+    box-shadow: 0 0 5px rgba(255, 204, 102, 0.5);
+}
+
+.custom-file-input:focus ~ .custom-file-label::after {
+    background-color: #ffd27f;
+}
+
+.custom-file-input:hover ~ .custom-file-label {
+    background-color: #3a3a3a;
+}
+
+.custom-file-input:hover ~ .custom-file-label::after {
+    background-color: #ffd27f;
+}
+
+/* Styles pour les icônes des groupes de filtres */
+.filter-group label {
+    display: flex;
+    align-items: center;
+}
+
+.filter-group label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Navigation Bar */
+/* Nouvelle version de la Navigation Bar sans fond imagé */
+.navbar {
+    background-color: #2a2a2a; /* Fond uni sombre */
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    /* Suppression de background-image pour un rendu plus épuré */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 40px;
+}
+
+.navbar-brand {
+    color: #ffcc66;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar-brand .logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar-toggler {
+    border: none;
+    color: #ffcc66;
+}
+
+.navbar-toggler .fas {
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #d2b48c;
+    transition: color 0.3s;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-item.active .nav-link {
+    color: #ffcc66;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    border-bottom: 2px solid #ffcc66;
+}
+
+/* Responsive simplifié pour le menu mobile */
+@media (max-width: 991px) {
+    .navbar-nav {
+        background-color: #2a2a2a;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    .navbar-nav.show {
+        display: flex;
+    }
+    .navbar-nav .nav-item {
+        margin: 10px 0;
+        text-align: center;
+    }
+    .navbar-nav .nav-link {
+        font-size: 1.2rem;
+    }
+}
+
+/* Pour éviter que le contenu de la navbar ne soit caché par des marges du body */
+body {
+    padding-top: 70px;
+}
+
+
+/* Styles pour le footer (si nécessaire) */
+footer {
+    background-color: #2a2a2a;
+    color: #d2b48c;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Styles pour les titres */
+h1, h2, h3, .navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
+/* Styles pour le spinner de chargement */
+.loading-spinner::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ffcc66;
+    border-top-color: #d2b48c;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+/* Styles pour l'indicateur de chargement dans la modale */
+/* Styles pour l'indicateur de chargement dans la modale */
+.image-loading-spinner {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-loading-spinner .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #ffcc66; /* Couleur du spinner */
+}
+
+.image-loading-spinner p {
+    color: #d2b48c;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+/* Styles pour la barre de progression */
+#uploadProgress .progress-bar {
+    background-color: #ffcc66;
+    color: #3a3a3a;
+    font-weight: bold;
+}
+
+#uploadProgress {
+    height: 25px;
+}
+
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
