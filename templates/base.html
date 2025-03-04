@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <!-- Lien vers Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -29,6 +28,9 @@
                     </li>
                     <li class="nav-item {% if request.endpoint == 'pnj_table' %}active{% endif %}">
                         <a class="nav-link" href="{{ url_for('pnj_table') }}"><i class="fas fa-users"></i> PNJ</a>
+                    </li>
+                    <li class="nav-item {% if request.endpoint == 'pnjlaelith' %}active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('pnjlaelith') }}"><i class="fas fa-user-tie"></i> PNJ Laelith</a>
                     </li>
                     <!-- Autres liens -->
                 </ul>

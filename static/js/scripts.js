@@ -1,3 +1,4 @@
+
 const categoryDescriptions = {
     "Taverne": "PNJ que l'on peut rencontrer dans des tavernes, où les aventuriers se retrouvent pour boire, échanger des histoires, et parfois trouver du travail. Les tavernes sont souvent des lieux animés où les informations circulent librement.",
     "Lieu Malfamé": "PNJ que l'on peut rencontrer dans des lieux dangereux ou illégaux, souvent impliqués dans des activités criminelles. Ces endroits sont fréquentés par des individus louches et des hors-la-loi.",

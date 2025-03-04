@@ -1,3 +1,7 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.0.1+cpu
+transformers==4.49.0
+sentence-transformers==3.4.1
 annotated-types==0.7.0
 anyio==4.8.0
 blinker==1.9.0
@@ -58,7 +62,6 @@ rich==13.9.4
 safetensors==0.5.2
 scikit-learn==1.6.1
 scipy==1.15.2
-sentence-transformers==3.4.1
 shellingham==1.5.4
 six==1.17.0
 smart-open==7.1.0
@@ -72,7 +75,6 @@ sympy==1.13.1
 thinc==8.3.4
 threadpoolctl==3.5.0
 tokenizers==0.21.0
-torch==2.6.0
 tqdm==4.67.1
 transformers==4.49.0
 typer==0.15.1
