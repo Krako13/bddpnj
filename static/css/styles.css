@@ -1,4 +1,8 @@
 /* Styles généraux */
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     position: relative;
     background-image: url('/static/images/background.png');
@@ -9,6 +13,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
+    overflow-y: scroll
 }
 
 body::before {
@@ -55,6 +60,13 @@ h1.main-title {
     font-size: 1rem;
     font-style: italic;
     color: #c0c0c0;
+}
+.btn-custom img.icon,
+.btn-custom-image img.icon,
+.btn-custom-secondary img.icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
 }
 
 /* Styles pour les boutons */
@@ -310,7 +322,7 @@ h1.main-title {
     margin: 0 auto; /* Centre l'image horizontalement */
     border: 5px solid #ffcc66;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	max-height: 80vh; 
+	max-height: 80vh;
 }
 
 #uploadSection {
@@ -551,10 +563,108 @@ h1, h2, h3, .navbar-brand {
     height: 25px;
 }
 
+.icon {
+    width: 30px; /* Ajustez la taille selon vos préférences */
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
 
 
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
+}
+/* Styles pour les titres */
+h1, h2, h3, .navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
+/* Styles pour les fichiers custom */
+.custom-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Styles spécifiques à la page pnjlaelith */
+.pnjlaelith .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pnjlaelith .filter-group {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.pnjlaelith .filter-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    min-width: 50px; /* Ajuster selon la taille souhaitée */
+}
+
+.pnjlaelith .filter-group label::after {
+    content: ':';
+    margin-left: 4px;
+}
+
+.pnjlaelith .filter-group .form-control {
+    width: auto;
+    min-width: 200px;
+}
+
+.pnjlaelith .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px; /* Réduire l'espacement à gauche */
+}
+
+.pnjlaelith .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pnjlaelith .search-wrapper .form-control {
+    width: 250px; /* Augmenté pour intégrer la loupe */
+    padding-right: 40px; /* Espace pour l'icône */
+}
+
+.pnjlaelith .search-wrapper .search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.pnjlaelith .search-wrapper .search-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.pnjlaelith .btn-custom {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    position: relative;
+    top: -5px; /* Monter le bouton de quelques pixels */
+}
+
+.pnjlaelith .btn-custom .icon {
+    margin-right: 5px;
+}
+
+/* Ajustement pour empêcher le chevauchement */
+.pnjlaelith .filter-group select,
+.pnjlaelith .filter-group input {
+    flex-shrink: 0;
 }

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}PNJ Laelith - La Taverne du D20{% endblock %}
+
+{% block content %}
+<div class="container my-5 pnjlaelith">
+    <h1 class="main-title">Personnages de Laelith</h1>
+
+    <!-- Filtres et barre de recherche -->
+    <form id="search-form" method="get" action="{{ url_for('pnjlaelith') }}" class="mb-4">
+        <div class="filter-row align-items-center">
+            <!-- Filtre Lieu -->
+            <div class="filter-group d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/category-icon.png') }}" alt="Lieu" class="icon mr-2">
+                <label for="lieuFilter" class="mb-0">Lieu</label>
+                <select id="lieuFilter" name="lieu" class="form-control ml-2">
+                    <option value="">Tous les lieux</option>
+                    {% for lieu in lieux %}
+                        <option value="{{ lieu }}" {% if lieu == lieu_selected %}selected{% endif %}>{{ lieu }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Filtre Nom -->
+            <div class="filter-group d-flex align-items-center ml-3">
+                <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Rechercher" class="icon mr-2">
+                <label for="searchInput" class="mb-0">Nom</label>
+                <div class="search-wrapper d-flex align-items-center ml-2">
+                    <input type="text" id="searchInput" name="search" class="form-control" placeholder="Rechercher par nom..." value="{{ search_query }}">
+                    <button class="btn search-button" type="button" id="search-icon">
+                        <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Rechercher">
+                    </button>
+                </div>
+            </div>
+            <!-- Bouton Réinitialiser les filtres -->
+            <div class="filter-group d-flex align-items-center ml-3">
+                <button type="button" id="reset-btn" class="btn btn-custom">
+                    <img src="{{ url_for('static', filename='images/reset-icon.png') }}" alt="Réinitialiser les filtres" class="icon mr-2">
+                    Réinitialiser les filtres
+                </button>
+            </div>
+        </div>
+        <!-- Champ caché pour la page actuelle -->
+        <input type="hidden" name="page" value="{{ page }}">
+    </form>
+
+    <!-- Liste des PNJ -->
+    <div class="row" id="pnjContainer">
+        {% for pnj in pnjs %}
+        <div class="col-md-4 mb-4 pnj-card">
+            <div class="card h-100">
+                {% if pnj['image'] != 'aucune' and pnj['image'] %}
+                    <a href="{{ url_for('static', filename='images/laelith/' + pnj['image']) }}" target="_blank">
+                        <img src="{{ url_for('static', filename='images/laelith/' + pnj['image']) }}" class="card-img-top" alt="{{ pnj['nom'] }}">
+                    </a>
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/laelith/default.png') }}" class="card-img-top" alt="Image par défaut">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ pnj['nom'] }}</h5>
+                    <p class="card-text"><strong>Lieu :</strong> {{ pnj['lieu'] }}</p>
+                    <p class="card-text">{{ pnj['commentaires'] }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('pnjlaelith', page=page-1, lieu=lieu_selected, search=search_query) }}" aria-label="Précédent">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Précédent</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Précédent">&laquo;</span>
+                </li>
+            {% endif %}
+
+            {% for p in range(1, total_pages + 1) %}
+                {% if p == page %}
+                    <li class="page-item active"><span class="page-link">{{ p }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for('pnjlaelith', page=p, lieu=lieu_selected, search=search_query) }}">{{ p }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('pnjlaelith', page=page+1, lieu=lieu_selected, search=search_query) }}" aria-label="Suivant">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Suivant</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Suivant">&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/pnjlaelith.js') }}"></script>
+{% endblock %}

@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Table des PNJ - La Taverne du D20{% endblock %}
@@ -9,7 +10,10 @@
     <form id="search-form" method="post" class="mb-4">
         <div class="filter-row">
             <div class="filter-group">
-                <label for="category">Sélectionner une Localisation :</label>
+                <label for="category">
+                    <img src="{{ url_for('static', filename='images/category-icon.png') }}" alt="Localisation" class="icon">
+                    Localisation :
+                </label>
                 <select id="category" name="category" class="form-control">
                     <option value="">Toutes Localisations</option>
                     <option value="Taverne">Taverne</option>
@@ -26,7 +30,10 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="sexe">Sélectionner le Sexe :</label>
+                <label for="sexe">
+                    <img src="{{ url_for('static', filename='images/sexe-icon.png') }}" alt="Sexe" class="icon">
+                    Sexe :
+                </label>
                 <select id="sexe" name="sexe" class="form-control">
                     <option value="">Tous</option>
                     <option value="Homme">Homme</option>
@@ -34,26 +41,38 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="race">Sélectionner la Race :</label>
+                <label for="race">
+                    <img src="{{ url_for('static', filename='images/race-icon.png') }}" alt="Race" class="icon">
+                    Race :
+                </label>
                 <select id="race" name="race" class="form-control">
                     <option value="">Toutes Races</option>
                     <!-- Les options de race seront générées dynamiquement -->
                 </select>
             </div>
             <div class="filter-group search-container">
-                <label for="keyword">Mot-clé :</label>
+                <label for="keyword">
+                    <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Mot-clé" class="icon">
+                    Mot-clé :
+                </label>
                 <div class="search-wrapper">
                     <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Rechercher...">
                     <button class="btn search-button" type="button" id="search-icon">
-                        <img src="/static/images/search-icon.png" alt="Rechercher">
+                        <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Rechercher">
                     </button>
                 </div>
             </div>
         </div>
         <div class="text-center mt-3">
             <div class="d-flex justify-content-center flex-wrap">
-                <button type="button" id="random-btn" class="btn btn-custom mx-2" data-action="random">PNJ Aléatoire</button>
-                <button type="button" id="reset-btn" class="btn btn-custom mx-2" data-action="reset">Réinitialiser les Filtres</button>
+                <button type="button" id="random-btn" class="btn btn-custom mx-2" data-action="random">
+                    <img src="{{ url_for('static', filename='images/random-icon.png') }}" alt="PNJ Aléatoire" class="icon">
+                    PNJ Aléatoire
+                </button>
+                <button type="button" id="reset-btn" class="btn btn-custom mx-2" data-action="reset">
+                    <img src="{{ url_for('static', filename='images/reset-icon.png') }}" alt="Réinitialiser les Filtres" class="icon">
+                    Réinitialiser les Filtres
+                </button>
             </div>
         </div>
     </form>
@@ -82,6 +101,7 @@
 
 <!-- Modal pour l'image -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <!-- Contenu de la modale inchangé -->
   <div class="modal-dialog modal-dialog-centered">
     <!-- On a retiré modal-lg pour une taille plus compacte -->
     <div class="modal-content">
@@ -131,9 +151,9 @@
   </div>
 </div>
 
-
 {% endblock %}
 
 {% block scripts %}
 <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 {% endblock %}
+
